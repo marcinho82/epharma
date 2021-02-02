@@ -1,27 +1,22 @@
 ﻿
 class Services {
+    constructor() {
+        this.state = {
+            items: [],
 
+        };
+    }
     
 
     async get() {
+
         fetch("https://localhost:44393/api/client")
             .then(res => res.json())
-            .then(
-                (result) => {                   
-                    this.setState({
-                        items: result.items
+            .then(result => this.setState({ items: result }))
 
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-        )        
+        console.log(this.state.items);
     }
-
+   
 }
 
 export default Services;

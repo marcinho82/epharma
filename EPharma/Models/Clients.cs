@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EPharma.Models
 {
     [Table("Clients")]
-    public class Clients
+    public class Clients 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

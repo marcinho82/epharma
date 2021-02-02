@@ -19,12 +19,27 @@ namespace EPharma.Service
 
         public void Insert(ClientPlan clientPlan )
         {
-            throw new NotImplementedException();
-        }
+            Error erro = new Error();
+            Clients clients = (Clients)_pharmaContext.Clients.Select(x => x.idCliente == clientPlan.idCliente);
+            Plans plan = (Plans)_pharmaContext.Plans.Select(x => x.idPlan == clientPlan.idPlan);
+            if (plan.dtFinalVigencia < clients.dtCadastro)
+            {
 
-        public void Update(int id, ClientPlan clientPlan)
-        {
-            throw new NotImplementedException();
+                erro.erro = "Não é permitido o relacionamento com um plano com vigência final menor que a data de vinculo";
+                erro.status = false;
+                
+            }
+            else if(plan.permitePessoaJuridica == "N" && clients.cpfCnpj.Length <= 14)
+            {
+                erro.erro = "Não é permitido pessoa jurídica para o plano escolhido";
+                erro.status = false;
+            }
+            else
+            {
+                _pharmaContext.ClientPlans.Add(clientPlan);
+                _pharmaContext.SaveChanges();
+            }
         }
+       
     }
 }

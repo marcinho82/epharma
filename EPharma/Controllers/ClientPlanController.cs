@@ -30,11 +30,6 @@ namespace EPharma.Controllers
             _clientPlan.Insert(clientPlan);
         }
 
-        // PUT api/<ClientPlanController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] ClientPlan clientPlan)
-        {
-            _clientPlan.Update(id, clientPlan);
-        }       
+       
     }
 }

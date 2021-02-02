@@ -10,8 +10,6 @@ namespace EPharma.Interface
     {
         void Insert(ClientPlan clientPlan);
 
-        void Update(int id, ClientPlan clientPlan);
-
-
+       
     }
 }
